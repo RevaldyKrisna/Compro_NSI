@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konsultasi K3 & Industri | NSI</title>
+    <link rel="icon" type="image/png" href="LOGO NUSA SARAYA edit.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        .nav-link {
+            color: #555;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #3498db;
+            transform: translateY(-2px);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        /* Dropdown Menu */
+        .nav-item.dropdown {
+            position: relative;
+        }
+
+        .nav-item.dropdown .dropdown-menu {
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 0;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+        }
+
+        /* Saat hover muncul dengan efek halus */
+        .nav-item.dropdown:hover .dropdown-menu {
+            opacity: 10;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Item dropdown */
+        .navbar .dropdown-menu a {
+            color: #333;
+            font-weight: 500;
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+        }
+
+        /* Hover item */
+        .navbar .dropdown-menu a:hover {
+            background: linear-gradient(135deg, #3498db15, #2ecc7010);
+            color: #007bff;
+            transform: translateX(3px);
+        }
+
+        /* Hilangkan tanda panah default */
+        .navbar .dropdown-toggle::after {
+            content: "";
+            border: none;
+            margin: 0;
+        }
+
+        /* Tambahan glow lembut saat hover */
+        .nav-item.dropdown:hover>.nav-link {
+            color: #007bff;
+            text-shadow: 0 0 8px rgba(52, 152, 219, 0.4);
+        }
+
+        .navbar .dropdown-menu a i {
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.3s ease;
+            margin-right: 8px;
+            color: #3498db;
+        }
+
+        .navbar .dropdown-menu a:hover i {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .btn-cta {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(52, 152, 219, 0.5);
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero-consulting {
+            position: relative;
+            background: url('assets/img/k3-hero.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-consulting::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.45));
+            z-index: 1;
+        }
+
+        .hero-consulting .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-consulting h1 {
+            font-weight: 700;
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        /* Content */
+        .consulting-content {
+            background: white;
+            margin-top: -60px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding: 60px;
+        }
+
+        .consulting-content h2 {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .consulting-content p {
+            color: #555;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e2ecf3 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card i {
+            font-size: 2rem;
+            color: #2ecc71;
+            margin-bottom: 15px;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #2ecc71, #3498db);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .cta-section h2 {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .btn-contact {
+            background: white;
+            color: #2c3e50;
+            border-radius: 30px;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            background: #2c3e50;
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-section h4 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #3498db;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #3498db;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #bdc3c7;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/img/LOGO NUSA SARAYA edit.png" alt="logo" width="70" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html#home">Beranda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#products">Alat Kesehatan</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="trainingDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Pelatihan
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="trainingDropdown">
+                            <li><a class="dropdown-item" href="pengelolaanLimbahB3.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Pengelolaan Limbah B3</a></li>
+                            <li><a class="dropdown-item" href="trainingAK3.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Training AK3 Umum</a></li>
+                            <li><a class="dropdown-item" href="auditInternal.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Auditor Internal Sistem
+                                    Manajemen(Mutu,K3,Lingkungan)</a></li>
+                            <li><a class="dropdown-item" href="pelatihanISO31000.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Pemahaman ISO 31000:2009(Sistem
+                                    Manajamen Resiko)</a></li>
+                            <li><a class="dropdown-item" href="pemahamanOHSAS.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Pemahaman OHSAS 18001:2007 dan SMK3
+                                    PP 50/2012(Sistem Manajemen K3)</a></li>
+                            <li><a class="dropdown-item" href="pemahamanISO14001.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Pemahaman ISO 14001:2015(Sistem
+                                    Manajemen Lingkungan)</a></li>
+                            <li><a class="dropdown-item" href="pemahamanISO9001.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Pemahaman ISO 9001:2015(Sistem
+                                    Management Mutu)</a></li>
+                            <li><a class="dropdown-item" href="pelatihanLain.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Pelatihan Lain</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="trainingDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Konsultasi
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="trainingDropdown">
+                            <li><a class="dropdown-item" href="environmentConsulting.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Konsultan Lingkungan</a></li>
+                            <li><a class="dropdown-item" href="consulting.html"><i
+                                        class="fa-solid fa-arrow-right"></i>Konsultan K3</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html#solutions">Solusi RS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Layanan Teknis</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Tentang Kami</a></li>
+                </ul>
+                <button class="btn btn-cta">Konsultasi Gratis</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-consulting">
+        <div class="container" data-aos="fade-up">
+            <h1>Konsultasi K3 & Industri</h1>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="consulting-content mt-3" data-aos="fade-up">
+                <h2>Solusi Kesehatan & Keselamatan Kerja</h2>
+                <p>NSI memberikan layanan konsultasi komprehensif dalam bidang K3 dan industri. Kami membantu perusahaan
+                    memastikan keamanan operasional, pemeliharaan peralatan, dan pengelolaan lingkungan kerja sesuai
+                    standar nasional dan internasional.</p>
+
+                <div class="row mt-5">
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-card">
+                            <i class="fas fa-user-shield"></i>
+                            <h5 class="fw-bold mt-3">Kesehatan & Keselamatan Kerja (K3)</h5>
+                            <p>Evaluasi dan penerapan sistem K3 di lingkungan industri untuk menciptakan tempat kerja
+                                yang aman dan sehat.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-card">
+                            <i class="fas fa-hard-hat"></i>
+                            <h5 class="fw-bold mt-3">Industrial Safety Service</h5>
+                            <p>Pendampingan dalam identifikasi risiko, inspeksi peralatan industri, dan pengelolaan
+                                sistem keselamatan kerja.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-card">
+                            <i class="fas fa-fire-extinguisher"></i>
+                            <h5 class="fw-bold mt-3">Fire Safety Equipment Maintenance</h5>
+                            <p>Pemeriksaan, perawatan, dan kalibrasi alat pemadam kebakaran untuk memastikan fungsi
+                                optimal di lapangan.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-4 justify-content-center">
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-card">
+                            <i class="fas fa-water"></i>
+                            <h5 class="fw-bold mt-3">Jasa Tank Cleaning & Pembersihan IPAL</h5>
+                            <p>Pembersihan tangki, saluran, dan sistem IPAL menggunakan metode ramah lingkungan dan
+                                standar keselamatan tinggi.</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                        <div class="service-card">
+                            <i class="fas fa-boxes-stacked"></i>
+                            <h5 class="fw-bold mt-3">Pengemasan & Segregasi Limbah</h5>
+                            <p>Layanan pengemasan dan pemisahan limbah sesuai jenis dan regulasi untuk mencegah
+                                pencemaran dan risiko kerja.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" data-aos="fade-up">
+        <div class="container">
+            <h2>Ingin Konsultasi dengan Tim Ahli K3 Kami?</h2>
+            <p>Kami siap membantu perusahaan Anda dalam penerapan sistem keselamatan dan lingkungan industri terbaik.
+            </p>
+            <a href="mailto:info@nusasaraya.co.id?subject=Konsultasi%20K3%20NSI&body=Halo%20tim%20NSI,%20saya%20ingin%20berkonsultasi%20tentang..."
+                class="btn btn-contact mt-3">
+                <i class="fas fa-envelope me-2"></i>Hubungi Kami
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container" data-aos="fade-up">
+            <div class="row">
+                <div class="col-md-4 footer-section">
+                    <h4><img src="assets/img/LOGO NUSA SARAYA edit.png" alt="logo-footer" style="width: 200px;"></h4>
+                    <p>Solusi teknologi medis dan lingkungan terpercaya untuk Indonesia yang lebih sehat.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 footer-section">
+                    <h4>Produk</h4>
+                    <ul>
+                        <li onclick="filterCategory('modular')"><a href="#products">Modular Operating Theatre</a></li>
+                        <li onclick="filterCategory('electromedics')"><a href="#products">Electromedics</a></li>
+                        <li onclick="filterCategory('disposable')"><a href="#products">Disposable</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 footer-section">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="index.html#services">Maintenance</a></li>
+                        <li><a href="index.html#services">Instalasi</a></li>
+                        <li><a href="index.html#services">Training</a></li>
+                        <li><a href="consulting.html">Konsultasi Lingkungan</a></li>
+                        <li><a href="consulting-k3.html">Konsultasi K3</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-section">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Surabaya, Jawa Timur</li>
+                        <li><i class="fas fa-phone me-2"></i> +62 812-3456-7890</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@nusasaraya.co.id</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NSI Industrial Safety Consulting. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+
+</html>

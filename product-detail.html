@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Produk | NSI</title>
+  <link rel="icon" type="image/png" href="LOGO NUSA SARAYA edit.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f8f9fa;
+      color: #333;
+    }
+    .navbar {
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .hero-detail {
+      background: linear-gradient(135deg, #3498db, #2ecc71);
+      color: white;
+      text-align: center;
+      padding: 100px 20px 60px;
+    }
+    .hero-detail h1 {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .hero-detail p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    .product-detail {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      margin-top: -60px;
+      padding: 40px;
+    }
+    .product-image {
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .product-specs li {
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+    }
+    .btn-back {
+      background: linear-gradient(135deg, #3498db, #2ecc71);
+      color: white;
+      border-radius: 30px;
+      padding: 10px 25px;
+      border: none;
+      transition: all 0.3s ease;
+    }
+    .btn-back:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="index.html">
+        <img src="LOGO NUSA SARAYA edit.png" alt="logo" width="70" class="d-inline-block align-text-top">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero-detail">
+    <div class="container">
+      <h1 class="mt-3" id="productName">Nama Produk</h1>
+      <p id="productCategory">Kategori Produk</p>
+    </div>
+  </section>
+
+  <!-- Detail Section -->
+  <section class="py-5">
+    <div class="container">
+      <div class="product-detail mt-3">
+        <div class="row align-items-center">
+          <div class="col-md-6 mb-4 mb-md-0">
+            <div class="product-image">
+              <img id="productImage" src="" alt="Product Image" class="img-fluid">
+            </div>
+          </div>
+          <div class="col-md-6">
+            <h3 class="fw-bold mb-3" id="productTitle">Judul Produk</h3>
+            <p id="productDescription">Deskripsi produk akan tampil di sini.</p>
+            <ul id="productSpecs" class="product-specs"></ul>
+            <h5 class="mt-4 fw-bold text-success">Harga: <span id="productPrice">Rp -</span></h5>
+            <a href="index.html#products" class="btn btn-back mt-4"><i class="fas fa-arrow-left me-2"></i>Kembali ke Produk</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const productData = {
+      // 🏥 Modular Operating Theatre
+      ruang_khusus: {
+        name: "Ruang Khusus",
+        category: "Modular Operating Theatre",
+        image: "assets/img/product/ruang-khusus.jpg",
+        description: "Modular operating room dengan sistem kontrol lingkungan presisi untuk operasi spesialis.",
+        specs: ["Dinding stainless clean panel", "Sistem HEPA 99.97%", "Laminar Air Flow", "Lighting & Soundproofing"],
+        price: "1.200.000.000"
+      },
+      ruang_umum: {
+        name: "Ruang Umum",
+        category: "Modular Operating Theatre",
+        image: "assets/img/product/ruang-umum.jpg",
+        description: "Standard modular room serbaguna untuk instalasi medis umum.",
+        specs: ["Modular wall system", "Air filtration HEPA", "Kedap suara & anti bakteri"],
+        price: "900.000.000"
+      },
+      ruang_minor: {
+        name: "Ruang Minor",
+        category: "Modular Operating Theatre",
+        image: "assets/img/product/ruang-minor.jpg",
+        description: "Ruang bedah minor modular dengan fleksibilitas konfigurasi dan efisiensi ruang.",
+        specs: ["Panel antibakteri", "Modular ceiling", "Air pressure monitoring"],
+        price: "650.000.000"
+      },
+
+      // ⚡ Electromedics
+      syringe_pump: {
+        name: "Syringe Pump",
+        category: "Electromedics",
+        image: "assets/img/product/syringe-pump.jpg",
+        description: "Pompa infus presisi tinggi untuk injeksi dosis akurat di ICU dan NICU.",
+        specs: ["Kapasitas syringe 10–50 ml", "Layar LCD digital", "Akurasi ±2%", "Baterai tahan 8 jam"],
+        price: "50.000.000"
+      },
+      infusion_pump: {
+        name: "Infusion Pump",
+        category: "Electromedics",
+        image: "https://amismedical.com/wp-content/smush-webp/2018/06/AM-eB12-1.jpg.webp",
+        description: "Pompa infus otomatis dengan sistem keamanan multi-level.",
+        specs: ["Kontrol digital", "Anti free-flow system", "Baterai rechargeable"],
+        price: "55.000.000"
+      },
+      suction_pump: {
+        name: "Suction Pump",
+        category: "Electromedics",
+        image: "assets/img/product/suction-pump.jpg",
+        description: "Pompa suction portable untuk keperluan operasi dan ICU.",
+        specs: ["Daya hisap 20 L/min", "Operasi senyap <60dB", "Tegangan 220V"],
+        price: "25.000.000"
+      },
+      esu_cauter: {
+        name: "ESU / Cauter",
+        category: "Electromedics",
+        image: "assets/img/product/esu.jpg",
+        description: "Unit bedah elektrokauter dengan mode monopolar & bipolar.",
+        specs: ["Power 400W", "Mode Cut/Coag", "Sertifikasi CE & ISO"],
+        price: "75.000.000"
+      },
+      surgical_table: {
+        name: "Surgical Table",
+        category: "Electromedics",
+        image: "https://tse1.mm.bing.net/th/id/OIP.TsQZqT1buoqUVzx7RC_9SQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Meja operasi elektrik dengan pengaturan posisi lengkap.",
+        specs: ["Motorized movement", "Load 250kg", "Remote control"],
+        price: "180.000.000"
+      },
+      autoclave: {
+        name: "Autoclave",
+        category: "Electromedics",
+        image: "https://tse4.mm.bing.net/th/id/OIP.4j6QkMJMT2yoBzpwWovgNwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Sterilisator uap dengan sistem tekanan otomatis dan kontrol suhu presisi.",
+        specs: ["Kapasitas 100L", "Suhu 121°C", "Safety double valve"],
+        price: "250.000.000"
+      },
+      usg: {
+        name: "USG",
+        category: "Electromedics",
+        image: "assets/img/product/usg.jpg",
+        description: "Ultrasound imaging system portable untuk diagnosa cepat.",
+        specs: ["Layar 15 inci", "Mode B/M/Color Doppler", "Multi-probe support"],
+        price: "180.000.000"
+      },
+      ventilator: {
+        name: "Ventilator",
+        category: "Electromedics",
+        image: "https://image.made-in-china.com/2f0j00UcYbFIMJlPkn/Ltsv18-Cheap-Price-Hospital-Medical-ICU-Apparatus-LED-Display-Medical-Ventilator-Ventilador.jpg",
+        description: "Ventilator ICU dengan kontrol tekanan & volume otomatis.",
+        specs: ["Mode ventilasi lengkap", "Alarm keselamatan", "Monitor LCD 12 inci"],
+        price: "450.000.000"
+      },
+      ctg_nst: {
+        name: "CTG / NST",
+        category: "Electromedics",
+        image: "https://image.made-in-china.com/2f0j00pLtoAjclAOgi/Contec-Cms800A-Plus-Fetal-Monitor-Ctg-Cardiotocography-Fetal-Heart-Rate-with-CE-Certificate.jpg",
+        description: "Cardiotocography monitor untuk pemantauan janin.",
+        specs: ["Dual probe fetal", "Thermal printer built-in", "Data USB export"],
+        price: "95.000.000"
+      },
+      aed: {
+        name: "AED",
+        category: "Electromedics",
+        image: "https://image.made-in-china.com/2f0j00lUAoLyBJPmcW/Automatic-External-Defibrillator-Aed-First-Aid-Cardiac-Portable-Defibrillator-Biphasic-Defibrillator-Analyzer.jpg",
+        description: "Defibrillator otomatis eksternal untuk resusitasi darurat.",
+        specs: ["Analisis otomatis", "Panduan suara", "Battery standby 5 tahun"],
+        price: "40.000.000"
+      },
+      ecg: {
+        name: "ECG",
+        category: "Electromedics",
+        image: "assets/img/product/ecg.jpg",
+        description: "Electrocardiograph 12 lead dengan printer thermal.",
+        specs: ["12 lead ECG", "Auto analysis", "Paper 210mm"],
+        price: "60.000.000"
+      },
+      anastesi_machine: {
+        name: "Anastesi Machine",
+        category: "Electromedics",
+        image: "https://tse3.mm.bing.net/th/id/OIP.W7tdHTFIV5z7ZBXrvpO1zwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Mesin anestesi lengkap dengan sistem ventilator terintegrasi.",
+        specs: ["Flowmeter O2/N2O", "Vaporizer ISO/SEV", "Ventilator integrated"],
+        price: "380.000.000"
+      },
+      bed_patient: {
+        name: "Bed Patient",
+        category: "Electromedics",
+        image: "assets/img/product/bed-patient.png",
+        description: "Tempat tidur pasien elektrik 3 fungsi dengan remote control.",
+        specs: ["Electric motorized", "Kapasitas 250kg", "Remote control"],
+        price: "90.000.000"
+      },
+
+      // 💉 Disposable
+      latex_glove: {
+        name: "Latex & Nitrile Glove",
+        category: "Disposable",
+        image: "https://tse4.mm.bing.net/th/id/OIP.N5rwgWwpVsVQrHI2UCjjBwHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Sarung tangan medis sekali pakai, aman dan higienis.",
+        specs: ["Tersedia nitrile & latex", "Non-steril / Steril", "Ukuran S–XL"],
+        price: "150.000 / box"
+      },
+      handscoon_steryl: {
+        name: "Handscoon Steryl Surgical",
+        category: "Disposable",
+        image: "assets/img/product/sterile-latex.jpg",
+        description: "Sarung tangan bedah steril dengan tekstur anti slip.",
+        specs: ["Steril EO", "Tebal 0.18mm", "Kemasan pair"],
+        price: "250.000 / box"
+      },
+      nurse_cap: {
+        name: "Nurse Cap",
+        category: "Disposable",
+        image: "https://i5.walmartimages.com/asr/defa8dce-b5bd-4a40-b404-fb1f68486b44_1.43759d53f083f761ca9bab874ee2890d.jpeg",
+        description: "Tutup kepala perawat berbahan non-woven ringan.",
+        specs: ["Material spunbond", "Elastic band", "Warna biru / putih"],
+        price: "80.000 / pack"
+      },
+      shoe_cover: {
+        name: "Shoe Cover",
+        category: "Disposable",
+        image: "assets/img/product/shoe-cover.jpg",
+        description: "Pelindung sepatu sekali pakai untuk ruang steril.",
+        specs: ["Waterproof", "Non-slip base", "Kemasan isi 100 pcs"],
+        price: "90.000 / pack"
+      },
+      infusion_set: {
+        name: "Infusion Set",
+        category: "Disposable",
+        image: "https://cdn.medzell.net/assets/media/manufacturer/products/images/iv-infusion-set.jpeg",
+        description: "Set infus steril dengan regulator flow presisi.",
+        specs: ["PVC bebas DEHP", "Steril EO", "Luer lock connector"],
+        price: "120.000 / pack"
+      },
+      iv_catheter: {
+        name: "IV Catheter",
+        category: "Disposable",
+        image: "https://tse4.mm.bing.net/th/id/OIP.EbgqwYJ4dntkd5pxLfNfCAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Kateter intravena dengan jarum stainless hypoallergenic.",
+        specs: ["Size 14G–24G", "With injection port", "Steril EO"],
+        price: "110.000 / pack"
+      },
+      pencil_cauter: {
+        name: "Pencil Cauter",
+        category: "Disposable",
+        image: "https://tse2.mm.bing.net/th/id/OIP.FOI6BVGKuFksCMeP6csGAQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Elektrokauter sekali pakai untuk operasi minor.",
+        specs: ["Kabel 3m", "Sakelar tombol", "Sertifikasi CE"],
+        price: "150.000 / pcs"
+      },
+      urine_bag: {
+        name: "Urine Bag",
+        category: "Disposable",
+        image: "assets/img/product/urine-bag.jpg",
+        description: "Kantong urine steril dengan kapasitas 2000ml.",
+        specs: ["Kapasitas 2L", "Tube 90cm", "Non-return valve"],
+        price: "50.000 / pcs"
+      },
+      medical_mask: {
+        name: "Medical Face Mask",
+        category: "Disposable",
+        image: "https://tse2.mm.bing.net/th/id/OIP.F1i3JfwveJMjF9qKry79wwHaEK?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Masker medis 3 ply dengan efisiensi filtrasi tinggi.",
+        specs: ["BFE ≥ 98%", "Tali elastis lembut", "Kemasan 50 pcs"],
+        price: "60.000 / box"
+      },
+      ctg_paper: {
+        name: "CTG / NST Paper",
+        category: "Disposable",
+        image: "https://thumbs.dreamstime.com/b/close-up-nst-paper-medical-method-monitoring-fetal-heart-rate-uterine-contractions-pregnancy-hospital-showing-many-251196820.jpg",
+        description: "Kertas thermal untuk alat CTG / NST.",
+        specs: ["Lebar 210mm", "Panjang 100m", "High resolution print"],
+        price: "80.000 / roll"
+      },
+      nasal_mask: {
+        name: "Nasal Mask O2",
+        category: "Disposable",
+        image: "assets/img/product/nasal-mask.jpg",
+        description: "Masker oksigen nasal ringan dan nyaman.",
+        specs: ["PVC medical grade", "Tube 2m", "Size dewasa & anak"],
+        price: "40.000 / pcs"
+      },
+      blood_set: {
+        name: "Blood Set",
+        category: "Disposable",
+        image: "https://tse2.mm.bing.net/th/id/OIP.KthS-dYtRtNfhSeZwjtfawHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Set transfusi darah steril dengan filter anti-koagulasi.",
+        specs: ["Panjang 180cm", "Filter built-in", "Steril EO"],
+        price: "100.000 / pcs"
+      },
+      o2_mask_nrb: {
+        name: "O2 Mask Non Rebreathing",
+        category: "Disposable",
+        image: "https://tse1.mm.bing.net/th/id/OIP.tXYIxxPLC-5crZOQl-l0KAHaH6?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Masker oksigen NRB dengan reservoir bag.",
+        specs: ["Reservoir 1000ml", "Valve satu arah", "Tube 2m"],
+        price: "75.000 / pcs"
+      },
+      alcohol_swab: {
+        name: "Alcohol Swab",
+        category: "Disposable",
+        image: "https://tse2.mm.bing.net/th/id/OIP.i6ClWvhfnM6V75xRf5jWVQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3",
+        description: "Kapas alkohol steril untuk antiseptik kulit.",
+        specs: ["70% isopropyl alcohol", "Kemasan 100 pcs", "Steril EO"],
+        price: "45.000 / box"
+      },
+      kasa: {
+        name: "Kasa",
+        category: "Disposable",
+        image: "assets/img/product/kasa-steril.jpg",
+        description: "Kasa medis steril untuk perawatan luka.",
+        specs: ["Ukuran 10x10 cm", "4 ply", "Steril EO"],
+        price: "55.000 / pack"
+      },
+      spinal_needle: {
+        name: "Spinal Needle",
+        category: "Disposable",
+        image: "https://image.made-in-china.com/2f0j00enNVMsvqkTba/Spinal-Needle-Anesthesia-Needle-Pencil-Point-Tip-CE-ISO.jpg",
+        description: "Jarum spinal steril untuk anestesi subarachnoid.",
+        specs: ["Ukuran 22G–25G", "Tip Quincke", "Steril EO"],
+        price: "35.000 / pcs"
+      }
+    };
+
+    // Ambil parameter dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productKey = urlParams.get('product');
+
+        // Ambil elemen HTML
+    const productName = document.getElementById('productName');
+    const productCategory = document.getElementById('productCategory');
+    const productImage = document.getElementById('productImage');
+    const productTitle = document.getElementById('productTitle');
+    const productDescription = document.getElementById('productDescription');
+    const productSpecs = document.getElementById('productSpecs');
+    const productPrice = document.getElementById('productPrice');
+
+    // Tampilkan data produk sesuai parameter
+    if (productData[productKey]) {
+      const p = productData[productKey];
+      productName.textContent = p.name;
+      productCategory.textContent = p.category;
+      productTitle.textContent = p.name;
+      productImage.src = p.image;
+      productDescription.textContent = p.description;
+      productPrice.textContent = p.price.toString().includes("Rp") ? p.price : "Rp " + p.price;
+
+      // Tambahkan spesifikasi
+      productSpecs.innerHTML = "";
+      p.specs.forEach(spec => {
+        const li = document.createElement('li');
+        li.textContent = "• " + spec;
+        productSpecs.appendChild(li);
+      });
+    } else {
+      document.querySelector('.product-detail').innerHTML = `
+        <div class="text-center p-5">
+          <h3>Produk tidak ditemukan 😢</h3>
+          <a href="index.html" class="btn btn-back mt-3"><i class="fas fa-arrow-left me-2"></i>Kembali</a>
+        </div>`;
+    }
+
+    // Tambahkan efek transisi lembut
+    document.body.style.opacity = 0;
+    window.addEventListener("load", () => {
+      document.body.style.transition = "opacity 0.6s ease";
+      document.body.style.opacity = 1;
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
