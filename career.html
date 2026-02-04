@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karir - PT Nusa Saraya Indonesia</title>
+    <link rel="icon" type="image/png" href="LOGO NUSA SARAYA edit.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="navbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero-career {
+            position: relative;
+            background: url('assets/img/career2-hero.jpg') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-career::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.35));
+            z-index: 1;
+        }
+
+        .hero-career .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-career h1 {
+            font-weight: 700;
+            font-size: 3.5rem;
+            padding-top: 100px;
+            color: #fff;
+        }
+
+        .hero-career p {
+            font-size: 1.2rem;
+            margin-top: 15px;
+            color: #fff;
+        }
+
+        /* Career Section */
+        .career-content {
+            background: white;
+            margin-top: -60px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            padding: 60px;
+        }
+
+        .career-content h2 {
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .career-content p {
+            color: #555;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        /* Why Join Us */
+        .why-join {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .why-join h2 {
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .benefit-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h4 {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Job Listings */
+        .job-listings {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .job-listings h2 {
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .job-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+        }
+
+        .job-card:hover {
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+            transform: translateY(-5px);
+        }
+
+        .job-card h4 {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .job-meta {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .job-meta span {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .job-meta i {
+            color: #3498db;
+            margin-right: 5px;
+        }
+
+        .job-description {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn-apply {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-apply:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #2c3e50;
+            padding: 60px 0 30px;
+        }
+
+        .footer-section h4 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul li a {
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #3498db;
+        }
+
+        .footer-logo {
+            width: 70px;
+            height: auto;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            color: white;
+            width: 40px;
+            height: 40px;
+            background: #2c3e50;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #fbfbfb;
+            color: #2c3e50;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 40px;
+            padding-top: 20px;
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        @media (max-width: 768px) {
+            .hero-career h1 {
+                font-size: 2rem;
+            }
+
+            .career-content {
+                padding: 30px;
+            }
+
+            .job-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <!-- Hero -->
+    <section class="hero-career">
+        <div class="container" data-aos="fade-up">
+            <h1>Bergabunglah Bersama Kami</h1>
+            <p>Wujudkan karir impian Anda di PT Nusa Saraya Indonesia</p>
+        </div>
+    </section>
+
+    <!-- Career Introduction -->
+    <section class="py-5">
+        <div class="container">
+            <div class="career-content mt-3" data-aos="fade-up" data-aos-duration="800">
+                <h2>Karir di PT Nusa Saraya Indonesia</h2>
+                <p>
+                    PT Nusa Saraya Indonesia adalah perusahaan yang bergerak di bidang teknologi medis dan keselamatan
+                    kerja. Kami terus berkembang dan mencari individu-individu berbakat yang memiliki semangat untuk
+                    memberikan kontribusi positif dalam industri kesehatan dan keselamatan kerja di Indonesia.
+                </p>
+                <p class="mt-3">
+                    Kami percaya bahwa karyawan adalah aset terbesar perusahaan. Oleh karena itu, kami berkomitmen
+                    untuk menciptakan lingkungan kerja yang mendukung pengembangan profesional dan pribadi setiap
+                    anggota tim kami.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Us -->
+    <section class="why-join">
+        <div class="container">
+            <h2 data-aos="fade-up">Mengapa Bergabung dengan Kami?</h2>
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h4>Pengembangan Karir</h4>
+                        <p>Kami menyediakan program pelatihan dan pengembangan untuk membantu Anda mencapai potensi
+                            maksimal dalam karir Anda.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h4>Tim yang Solid</h4>
+                        <p>Bekerja dengan tim profesional yang suportif dan kolaboratif dalam lingkungan kerja yang
+                            positif.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Benefit dan Fasilitas</h4>
+                        <p>
+                            Perusahaan menyediakan paket kompensasi yang kompetitif,
+                            dilengkapi dengan berbagai tunjangan serta fasilitas pendukung
+                            untuk menunjang kesejahteraan karyawan.
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h4>Work-Life Balance</h4>
+                        <p>Kami mendukung keseimbangan antara pekerjaan dan kehidupan pribadi untuk kesejahteraan
+                            karyawan.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h4>Inovasi & Kreativitas</h4>
+                        <p>Lingkungan yang mendorong ide-ide baru dan solusi inovatif dalam setiap aspek pekerjaan.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h4>Penghargaan Kinerja</h4>
+                        <p>Sistem reward dan recognition untuk apresiasi terhadap kontribusi dan pencapaian karyawan.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Job Listings -->
+    <section class="job-listings">
+        <div class="container">
+            <h2 data-aos="fade-up">Posisi yang Tersedia</h2>
+
+            <div class="job-card" data-aos="fade-up" data-aos-delay="100">
+                <h4>Sales Representative (Penempatan Jawa tengah)</h4>
+                <div class="job-meta">
+                    <span><i class="fas fa-briefcase"></i> Full Time</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Jawa Tengah</span>
+                </div>
+                <div class="job-description">
+                    <strong>Requirements:</strong>
+                    <ul style="margin-top: 10px; margin-bottom: 0;">
+                        <li>Pendidikan minimal D3 semua jurusan (teknik kimia/kimia lebih diutamakan)</li>
+                        <li>Pengalaman minimal 2 tahun dibidang yang sama (lebih diutamakan)</li>
+                        <li>Memiliki SIM A/C</li>
+                        <li>Dapat segera bergabung.</li>
+                    </ul>
+                </div>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@nusasaraya.co.id&su=Lamaran Sales Representative Jawa Tengah (Nama Anda)"
+                    target="_blank" class="btn btn-apply">Lamar Sekarang</a>
+            </div>
+
+            <div class="job-card" data-aos="fade-up" data-aos-delay="200">
+                <h4>Sales Representative (Penempatan Kalimantan Selatan)</h4>
+                <div class="job-meta">
+                    <span><i class="fas fa-briefcase"></i> Full Time</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Kalimantan Selatan</span>
+                </div>
+                <div class="job-description">
+                   <strong>Requirements:</strong>
+                    <ul style="margin-top: 10px; margin-bottom: 0;">
+                        <li>Pendidikan minimal D3 semua jurusan (teknik kimia/kimia lebih diutamakan)</li>
+                        <li>Pengalaman minimal 2 tahun dibidang yang sama (lebih diutamakan)</li>
+                        <li>Memiliki SIM A/C</li>
+                        <li>Dapat segera bergabung.</li>
+                    </ul>
+                </div>
+                <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@nusasaraya.co.id&su=Lamaran Sales Representative Kalimantan Selatan (Nama Anda)"
+                    target="_blank" class="btn btn-apply">Lamar Sekarang</a>
+            </div>
+
+            <!-- <div class="job-card" data-aos="fade-up" data-aos-delay="300">
+                <h4>Marketing Specialist</h4>
+                <div class="job-meta">
+                    <span><i class="fas fa-briefcase"></i> Full Time</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Surabaya, Jawa Timur</span>
+                </div>
+                <div class="job-description">
+                    Kami mencari Marketing Specialist yang kreatif dan inovatif untuk mengembangkan strategi pemasaran
+                    produk medis kami. Pengalaman di bidang B2B marketing akan menjadi nilai tambah.
+                </div>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@nusasaraya.co.id&su=Lamaran Marketing Specialist"
+                        target="_blank" class="btn btn-apply">Lamar Sekarang</a>
+            </div> -->
+
+            <div class="text-center mt-5" data-aos="fade-up">
+                <p class="text-muted">Tidak menemukan posisi yang sesuai? Kirim CV Anda ke <a
+                        href="mailto:info@nusasaraya.co.id">info@nusasaraya.co.id</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer data-aos="fade-up" data-aos-duration="800">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 footer-section">
+                    <h4><img src="assets/img/vector-n.png" alt="logo-footer" class="footer-logo" style="width: 200px;">
+                    </h4>
+                    <p>Solusi teknologi medis terpercaya untuk rumah sakit di seluruh Indonesia.</p>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/nusasaraya.id/" class="social-icon"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/628884907860" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 footer-section">
+                    <h4>Produk</h4>
+                    <ul>
+                        <li><a href="#products">Electromedics</a></li>
+                        <li><a href="#products">Disposable</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2 footer-section">
+                    <h4>Layanan</h4>
+                    <ul>
+                        <li><a href="#">Maintenance</a></li>
+                        <li><a href="#">Instalasi</a></li>
+                        <li><a href="#">Training</a></li>
+                        <li><a href="#">Konsultasi</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 footer-section">
+                    <h4>Kontak</h4>
+                    <ul>
+                        <li><i class="fas fa-phone me-2"></i> +62 888-4907-860</li>
+                        <li><i class="fas fa-envelope me-2"></i> info@nusasaraya.co.id</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> Pergudangan Meiko Abadi VI G-01, Sumput,
+                            Driyorejo, Dusun Karanglo, Driyorejo, Kec. Driyorejo, Kabupaten Gresik, Jawa Timur 61177
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 NSI Medical Technology. All Rights Reserved. | Teknologi Medis, Sentuhan Manusia</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="navbar.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (navbar) {
+                navbar.classList.toggle('scrolled', window.scrollY > 50);
+            }
+        });
+    </script>
+</body>
+
+</html>
