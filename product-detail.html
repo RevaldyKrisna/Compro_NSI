@@ -95,6 +95,10 @@
             <h3 class="fw-bold mb-3" id="productTitle">Judul Produk</h3>
             <p id="productDescription">Deskripsi produk akan tampil di sini.</p>
             <ul id="productSpecs" class="product-specs"></ul>
+            <div id="notesSection" style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-left: 4px solid #3498db; border-radius: 5px;">
+              <h5 class="fw-bold mb-2" style="color: #3498db;">Catatan :</h5>
+              <ul id="productNotes" class="product-specs" style="margin: 0;"></ul>
+            </div>
             <h5 class="mt-4 fw-bold text-success">Harga: <span id="productPrice">Rp -</span></h5>
             <a href="index.html#products" class="btn btn-back mt-4"><i class="fas fa-arrow-left me-2"></i>Kembali ke
               Produk</a>
@@ -120,7 +124,14 @@
           "Built-in alarm untuk tekanan, apneu & daya",
           "Baterai cadangan untuk penggunaan mobile"
         ],
-        price: "± Rp43.500.000 – Rp45.000.000 / unit"
+        notes: [
+          "Garansi sparepart 1 tahun",
+          "Free maintenance 2 tahun",
+          "Sudah termasuk instalasi dan uji fungsi",
+          "Free training alat berkala",
+          "Harga negosiable"
+        ],
+        price: "Rp 125.000.000 / unit"
       },
 
       ventilator_sh300: {
@@ -135,7 +146,14 @@
           "Backup apnea ventilation & built-in alarm safety",
           "Baterai cadangan internal untuk penggunaan saat listrik padam"
         ],
-        price: "Rp 80.000.000 – Rp 396.208.000 / unit",
+        notes: [
+          "Garansi sparepart 1 tahun",
+          "Free maintenance 2 tahun",
+          "Sudah termasuk instalasi dan uji fungsi",
+          "Free training alat berkala",
+          "Harga negosiable"
+        ],
+        price: "Rp 225.000.000 / unit",
       },
       anaesthesia_machine: {
         name: "Anesthesia Machine AM834",
@@ -149,7 +167,14 @@
           "Cocok untuk pasien Dewasa, Pediatrik & Infant",
           "Monitoring gas real-time & alarm keselamatan"
         ],
-        price: "± Rp 364.928.000 / unit"
+        notes: [
+          "Garansi sparepart 1 tahun",
+          "Free maintenance 2 tahun",
+          "Sudah termasuk instalasi dan uji fungsi",
+          "Free training alat berkala",
+          "Harga negosiable"
+        ],
+        price: "Rp 435.000.000 / unit"
       },
 
       // 💉 Disposable
@@ -195,6 +220,7 @@
     const productTitle = document.getElementById('productTitle');
     const productDescription = document.getElementById('productDescription');
     const productSpecs = document.getElementById('productSpecs');
+    const productNotes = document.getElementById('productNotes');
     const productPrice = document.getElementById('productPrice');
 
     // Tampilkan data produk sesuai parameter
@@ -214,6 +240,19 @@
         li.textContent = spec;
         productSpecs.appendChild(li);
       });
+
+      // Tambahkan catatan/notes (tidak ditampilkan untuk kategori Disposable)
+      if (p.notes && p.notes.length > 0 && p.category !== "Disposable") {
+        productNotes.innerHTML = "";
+        p.notes.forEach(note => {
+          const li = document.createElement('li');
+          li.textContent = note;
+          productNotes.appendChild(li);
+        });
+      } else {
+        // Sembunyikan section catatan jika kategori Disposable
+        document.getElementById('notesSection').style.display = 'none';
+      }
     } else {
       document.querySelector('.product-detail').innerHTML = `
         <div class="text-center p-5">
